@@ -1,0 +1,22 @@
+{
+    "claudes": [
+        {
+            "id": "claude-1",
+            "name": "Claude",
+            "title": "Sr Vibe Coder",
+            "directory": "/Users/andrewmelbourne/Software-Projects/deep-research-directory"
+        },
+        {
+            "id": "claude-2",
+            "name": "Claude",
+            "title": "Vibe Coder",
+            "directory": "/Users/andrewmelbourne/Software-Projects/tests"
+        },
+        {
+            "id": "claude-3",
+            "name": "Claude",
+            "title": "Vibe Coder",
+            "directory": "/Users/andrewmelbourne/Software-Projects/production"
+        }
+    ]
+}
