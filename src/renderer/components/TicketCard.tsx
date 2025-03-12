@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
-import { Ticket } from '../types';
+import { Ticket } from '../../types/ipc';
 
 interface TicketCardProps {
     ticket: Ticket;
@@ -42,7 +42,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, onClick }) => {
                 <p className="text-sm text-gray-300 line-clamp-2">{ticket.description}</p>
                 <div className="mt-2">
                     <p className="text-xs text-gray-400">
-                        Created: {new Date(ticket.created_at).toLocaleDateString()}
+                        Created: {new Date(ticket.createdAt || Date.now()).toLocaleDateString()}
                     </p>
                 </div>
             </div>

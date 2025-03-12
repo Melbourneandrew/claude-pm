@@ -3,7 +3,7 @@ import ClaudeCard from '../components/ClaudeCard';
 import Terminal from '../components/Terminal';
 import TicketCard from '../components/TicketCard';
 import AddTicketForm from '../components/AddTicketForm';
-import { Claude, Ticket } from '../types';
+import { Claude, Ticket } from '../../types/ipc';
 import { storage } from '../services/storage';
 
 const HomePage: React.FC = () => {
@@ -121,7 +121,7 @@ const HomePage: React.FC = () => {
       {/* Terminal Modal */}
       {selectedClaude && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-[rgb(38,38,36)] rounded-lg w-full max-w-4xl h-3/4 overflow-hidden flex flex-col">
+          <div className="bg-[rgb(38,38,36)] rounded-lg w-full max-w-4xl h-3/4 flex flex-col">
             <div className="p-4 border-b border-gray-700 flex justify-between items-center">
               <div>
                 <h2 className="text-xl font-bold text-white">{selectedClaude.name}</h2>
@@ -132,7 +132,7 @@ const HomePage: React.FC = () => {
                 ✕
               </button>
             </div>
-            <div className="flex-grow p-4 overflow-hidden">
+            <div className="flex-1">
               <Terminal claudeId={selectedClaude.id} />
             </div>
           </div>

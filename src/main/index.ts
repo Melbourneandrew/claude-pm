@@ -27,8 +27,10 @@ const createWindow = () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.whenReady().then(() => {
-    createWindow();
+    // Set up IPC handlers first
     setupIpcHandlers();
+    // Then create the window
+    createWindow();
 
     app.on('activate', () => {
         // On macOS it's common to re-create a window in the app when the

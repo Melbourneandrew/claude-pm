@@ -10,13 +10,13 @@
             "id": "claude-2",
             "name": "Claude",
             "title": "Vibe Coder",
-            "directory": "/Users/andrewmelbourne/Software-Projects/tests"
+            "directory": "/Users/andrewmelbourne/Software-Projects/deep-research-directory"
         },
         {
             "id": "claude-3",
             "name": "Claude",
             "title": "Vibe Coder",
-            "directory": "/Users/andrewmelbourne/Software-Projects/production"
+            "directory": "/Users/andrewmelbourne/Software-Projects/deep-research-directory"
         }
     ]
 }
