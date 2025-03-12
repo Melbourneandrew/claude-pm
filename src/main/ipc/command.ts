@@ -1,8 +1,9 @@
-import { ipcMain, BrowserWindow, IpcMainInvokeEvent } from 'electron';
+import { contextBridge, ipcMain, BrowserWindow, IpcMainInvokeEvent } from 'electron';
 import * as pty from 'node-pty';
 import os from 'os';
 import fs from 'fs';
 import path from 'path';
+import { storage } from '../../renderer/services/storage';
 
 const shell = os.platform() === 'win32' ? 'powershell.exe' : '/bin/zsh';
 const shellArgs = os.platform() === 'win32' ? [] : [];
@@ -27,6 +28,7 @@ const appendToHistory = (claudeId: string, data: string) => {
 
     terminalHistory.set(claudeId, history);
 };
+
 
 export const setupCommandHandlers = () => {
     // Read Claude configurations - use the same path as claude.ts
@@ -126,6 +128,38 @@ export const setupCommandHandlers = () => {
     ipcMain.handle('get-terminal-history', (event, claudeId: string) => {
         console.log(`History requested for Claude ${claudeId}`);
         return terminalHistory.get(claudeId) || '';
+    });
+
+    // Handle ticket implementation in a PTY process
+    ipcMain.handle('implement-ticket', async (event, { ticketId, ticketDescription, claudeId }) => {
+        console.log(`Implementing ticket ${ticketDescription} in Claude ${claudeId}`);
+        const ptyProcess = ptyProcesses.get(claudeId);
+
+        if (!ptyProcess) {
+            throw new Error(`No PTY process found for Claude ${claudeId}`);
+        }
+
+        try {
+            const branchName = `ticket-${ticketId}`;
+            ptyProcess.write(`git checkout main && git pull && git checkout -b ${branchName} && git commit --allow-empty -m "create branch" && git push --set-upstream origin ${branchName}\n`);
+
+            // Wait a bit for the branch to be created
+            await new Promise(resolve => setTimeout(resolve, 2500));
+
+            // Run the claude command with the ticket description
+            const escapedDescription = ticketDescription.replace(/"/g, '\\"');
+            ptyProcess.write(`npx claude-yolo "Implement the following ticket. When you are finished, commit and push the branch. Then use gh pr create --base main to create a pull request with a title and body. Here is the ticket description: ${escapedDescription}"\n`);
+
+            // Wait for the claude command to actually complete
+
+            // create a pull request
+            ptyProcess.write(`gh pr create --base main --head ${branchName} --title "${ticketDescription}" --body "${ticketDescription}"\n`);
+
+            return { success: true };
+        } catch (error) {
+            console.error(`Failed to implement ticket ${ticketId}:`, error);
+            throw error;
+        }
     });
 
     // Clean up on app quit

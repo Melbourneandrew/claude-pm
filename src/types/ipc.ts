@@ -43,6 +43,7 @@ declare global {
             getTickets: () => Promise<Ticket[]>;
             updateTicket: (id: string, updates: Partial<Ticket>) => Promise<void>;
             assignTicket: (id: string, assignee: string) => Promise<void>;
+            implementTicket: (ticketId: string, ticketDescription: string, claudeId: string) => Promise<void>;
         }
     }
 } 

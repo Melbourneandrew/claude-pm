@@ -10,7 +10,6 @@ contextBridge.exposeInMainWorld(
     createClaude: (claude: any) => ipcRenderer.invoke('create-claude', claude),
     updateClaude: (id: string, updates: any) => ipcRenderer.invoke('update-claude', id, updates),
     deleteClaude: (id: string) => ipcRenderer.invoke('delete-claude', id),
-    openDirectory: () => ipcRenderer.invoke('open-directory'),
     onClaudeUpdate: (callback: any) => {
       const subscription = (_event: any, claudes: any) => callback(claudes);
       ipcRenderer.on('claude-update', subscription);
@@ -39,6 +38,8 @@ contextBridge.exposeInMainWorld(
     updateTicket: (id: string, updates: Partial<any>) =>
       ipcRenderer.invoke('update-ticket', { id, updates }),
     assignTicket: (id: string, assignee: string) =>
-      ipcRenderer.invoke('assign-ticket', { id, assignee })
+      ipcRenderer.invoke('assign-ticket', { id, assignee }),
+    implementTicket: (ticketId: string, ticketDescription: string, claudeId: string) =>
+      ipcRenderer.invoke('implement-ticket', { ticketId, ticketDescription, claudeId }),
   }
 );

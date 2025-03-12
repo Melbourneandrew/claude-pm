@@ -14,9 +14,11 @@
     "postinstall": "electron-rebuild"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^7.6.12",
     "@xterm/addon-attach": "^0.11.0",
     "@xterm/addon-fit": "^0.10.0",
     "@xterm/xterm": "^5.5.0",
+    "better-sqlite3": "^11.8.1",
     "fix-path": "^4.0.0",
     "node-pty": "^1.0.0",
     "react": "^18.2.0",

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Terminal as XTerm } from '@xterm/xterm';
 import '@xterm/xterm/css/xterm.css';
-import { TerminalInput, TerminalOutput } from '../../types/ipc';
+import { TerminalOutput } from '../../types/ipc';
 
 interface TerminalProps {
   claudeId: string;

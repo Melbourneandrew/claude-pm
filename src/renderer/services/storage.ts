@@ -1,4 +1,4 @@
-import { Ticket } from '../types';
+import { Ticket } from '../../types/ipc';
 
 const TICKETS_KEY = 'claude_pm_tickets';
 
@@ -8,7 +8,7 @@ export const storage = {
         const newTicket: Ticket = {
             id: crypto.randomUUID(),
             ...ticket,
-            created_at: Date.now(),
+            createdAt: Date.now(),
             status: 'open'
         };
 
@@ -40,5 +40,10 @@ export const storage = {
 
     assignTicket: (id: string, assignee: string): Ticket | null => {
         return storage.updateTicket(id, { assignee });
+    },
+
+    getTicket: (id: string): Ticket | null => {
+        const tickets = storage.getTickets();
+        return tickets.find(t => t.id === id) || null;
     }
 }; 

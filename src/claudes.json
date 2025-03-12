@@ -4,19 +4,25 @@
             "id": "claude-1",
             "name": "Claude",
             "title": "Sr Vibe Coder",
-            "directory": "/Users/andrewmelbourne/Software-Projects/deep-research-directory"
+            "directory": "/Users/andrewmelbourne/Software-Projects/ARENA/claudeffice/claude1-offfice"
         },
         {
             "id": "claude-2",
             "name": "Claude",
             "title": "Vibe Coder",
-            "directory": "/Users/andrewmelbourne/Software-Projects/deep-research-directory"
+            "directory": "/Users/andrewmelbourne/Software-Projects/ARENA/claudeffice/claude2-offfice"
         },
         {
             "id": "claude-3",
             "name": "Claude",
             "title": "Vibe Coder",
-            "directory": "/Users/andrewmelbourne/Software-Projects/deep-research-directory"
+            "directory": "/Users/andrewmelbourne/Software-Projects/ARENA/claudeffice/claude3-offfice"
+        },
+        {
+            "id": "claude-4",
+            "name": "Claude",
+            "title": "Vibe Coder",
+            "directory": "/Users/andrewmelbourne/Software-Projects/ARENA/claudeffice/claude4-offfice"
         }
     ]
 }

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
-  
+
   return (
     <div className="navbar bg-primary text-primary-content">
       <div className="navbar-start">
@@ -18,7 +18,10 @@ const Navbar: React.FC = () => {
             <li><Link to="/tickets" className={location.pathname === '/tickets' ? 'active' : ''}>Tickets</Link></li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">Claude PM</Link>
+        <Link to="/" className="btn btn-ghost normal-case text-xl flex items-center gap-2">
+          <img src="/claude-logo.png" alt="Claude Logo" className="w-8 h-8" />
+          Claude PM
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

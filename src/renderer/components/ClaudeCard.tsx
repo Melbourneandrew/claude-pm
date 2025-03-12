@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import { Claude } from '../types';
+import { Claude } from '../../types/ipc';
 
 interface ClaudeCardProps {
   claude: Claude;
@@ -29,12 +29,13 @@ const ClaudeCard: React.FC<ClaudeCardProps> = ({ claude, onClick, onAssignTicket
       style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
       onClick={onClick}
     >
-      <div className="card-body">
-        <h2 className="card-title text-white">{claude.name}</h2>
-        <p className="text-sm text-gray-300">{claude.title}</p>
-        <div className="mt-2">
+      <div className="card-body p-4 pb-0 flex flex-row">
+        <div className="min-w-0 mr-2">
+          <h2 className="card-title text-white text-lg mb-1">{claude.name}</h2>
+          <p className="text-sm text-gray-300 mb-1">{claude.title}</p>
           <p className="text-xs font-mono text-gray-400 truncate">{claude.directory}</p>
         </div>
+        <img src="/claude-office.png" alt="Claude" className="w-[200px] h-[200px] object-contain" />
       </div>
     </div>
   );

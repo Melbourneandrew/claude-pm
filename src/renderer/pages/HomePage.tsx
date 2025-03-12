@@ -49,6 +49,11 @@ const HomePage: React.FC = () => {
   const handleTicketAssignment = async (ticketId: string, claudeName: string) => {
     try {
       await storage.assignTicket(ticketId, claudeName);
+      const ticket = storage.getTicket(ticketId);
+      const claude = claudes.find(c => c.name === claudeName);
+      if (ticket && claude) {
+        window.electron.implementTicket(ticketId, ticket.description, claude.id);
+      }
       loadData();
     } catch (error) {
       console.error('Error assigning ticket:', error);
@@ -66,7 +71,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="flex h-screen">
       {/* Left Column - Tickets */}
-      <div className="w-80 border-r border-gray-700 overflow-y-auto flex flex-col">
+      <div className="w-[400px] border-r border-gray-700 overflow-y-auto flex flex-col">
         <div className="flex justify-between items-center p-6 border-b border-gray-700">
           <h2 className="text-2xl font-bold text-white">Tickets</h2>
           <button
@@ -84,7 +89,7 @@ const HomePage: React.FC = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              {tickets.map((ticket) => (
+              {tickets.slice().reverse().map((ticket) => (
                 <TicketCard
                   key={ticket.id}
                   ticket={ticket}
