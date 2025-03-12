@@ -1,6 +1,10 @@
 # Claude PM - Terminal Management System
 
-A desktop application built with Electron and React that manages multiple terminal sessions. Each terminal session ("Claude") is configured via a JSON file and can run commands independently, with real-time output streaming back to the UI.
+Check out the [video on X](https://x.com/andrew_melby/status/1899682773905846566)
+
+Special thanks to Andrew Jefferson [@EastlondonDev](https://x.com/EastlondonDev/status/1894791530550026472) for creating [claude-yolo](https://github.com/eastlondoner/claude-yolo) that is used to prevent Claude from stopping to ask for permission.
+
+Claude PM is: A desktop application built with Electron and React that manages multiple [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) terminal sessions. Tickets can be assigned to a Claude and are implemented with a claude code command. Claude pushes a new branch and creates a PR with their changes.
 
 ## Features
 
