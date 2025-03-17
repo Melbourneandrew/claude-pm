@@ -141,19 +141,19 @@ export const setupCommandHandlers = () => {
 
         try {
             const branchName = `ticket-${ticketId}`;
-            ptyProcess.write(`git checkout main && git pull && git checkout -b ${branchName} && git commit --allow-empty -m "create branch" && git push --set-upstream origin ${branchName}\n`);
+            ptyProcess.write(`git checkout -b ${branchName} && git commit --allow-empty -m "create branch" && git push --set-upstream origin ${branchName}\n`);
 
             // Wait a bit for the branch to be created
             await new Promise(resolve => setTimeout(resolve, 2500));
 
             // Run the claude command with the ticket description
             const escapedDescription = ticketDescription.replace(/"/g, '\\"');
-            ptyProcess.write(`npx claude-yolo "Implement the following ticket. When you are finished, commit and push the branch. Then use gh pr create --base main to create a pull request with a title and body. Here is the ticket description: ${escapedDescription}"\n`);
+            ptyProcess.write(`npx claude-yolo "Implement the following ticket. You are already on the right branch. When you are finished, stage all changes, make a commit, and push (git push). Then use gh pr create --base main to create a pull request with a title and body. Here is the ticket description: ${escapedDescription}"\n`);
 
             // Wait for the claude command to actually complete
 
             // create a pull request
-            ptyProcess.write(`gh pr create --base main --head ${branchName} --title "${ticketDescription}" --body "${ticketDescription}"\n`);
+            // ptyProcess.write(`gh pr create --base main --head ${branchName} --title "${ticketDescription}" --body "${ticketDescription}"\n`);
 
             return { success: true };
         } catch (error) {
